@@ -25,3 +25,9 @@ Projet indépendant du client LCL Contact — aucune donnée client.
 
 ## Site cible
 https://www.saucedemo.com (démo publique)
+
+## Résultat du run
+
+Le run réel documenté dans `outputs/rapport-execution-20260915.md` n'est **pas** un run vert classique : l'exécution a mis en évidence un doute sur la fiabilité de l'environnement d'exécution (MCP Playwright/Chromium) plutôt qu'un verdict pass/fail tranché sur l'application — voir ce rapport pour le diagnostic complet et l'empreinte de l'environnement utilisé.
+
+`tests/story-001.spec.ts` est, pour cette itération, un artefact versionné uniquement (Task 6 du plan) : il n'est pas exécuté via un test-runner (aucun `package.json`/`playwright.config.ts` fourni dans ce repo, donc `npx playwright test` ne fonctionnera pas en l'état). L'exécution réelle de cette itération est passée par les outils navigateur MCP Playwright en direct. L'intégration CI/CD est explicitement hors périmètre (voir `docs/specs/design-qa-ai-agent-poc_20260915.md`, section "Hors périmètre").
