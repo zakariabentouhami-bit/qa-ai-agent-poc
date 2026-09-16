@@ -11,7 +11,9 @@ Reproduit le workflow "JIRA + MCP + IA + Playwright" pour une story donnee.
 Quand on demande de traiter une nouvelle story dans `stories/` de ce projet.
 
 ## Processus
-1. Lire `stories/<story>.md` : extraire l'ID, le contexte, les criteres d'acceptation (Gherkin).
+1. Obtenir la story :
+   - Si un fichier markdown existe deja dans `stories/`, le lire directement : extraire l'ID, le contexte, les criteres d'acceptation (Gherkin).
+   - Sinon, si un document source brut existe dans `inputs/` (PDF, export Confluence, cahier de recette, page web collectee), le convertir en story normalisee dans `stories/` (memes sections : ID, contexte, criteres d'acceptation Gherkin), en citant la source (URL/fichier) et la date de collecte. Ne jamais inventer un critere d'acceptation absent de la source : si un comportement n'est pas documente, le verifier en direct sur le site cible avant de l'ecrire (meme discipline que la regle "zero donnee inventee").
 2. Rediger `docs/strategie-test-YYYYMMDD.md` : perimetre, approche risk-based, niveaux de test, criteres d'entree/sortie. Vocabulaire ISTQB.
 3. Invoquer la skill `jira-xray-csv` pour produire `outputs/cas-test-YYYYMMDD.csv` a partir des criteres d'acceptation, un cas de test par scenario Gherkin. TestSet du POC : `POC-AGENT-1` (jamais un TestSet client reel).
 4. Generer `tests/<story-id>.spec.ts` (Playwright Test, TypeScript) : un test par scenario, assertions explicites, selectors observables sur le site cible.
