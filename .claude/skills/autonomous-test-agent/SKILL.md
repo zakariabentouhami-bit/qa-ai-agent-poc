@@ -19,7 +19,8 @@ Quand on demande de traiter une nouvelle story dans `stories/` de ce projet.
 4. Generer `tests/<story-id>.spec.ts` (Playwright Test, TypeScript) : un test par scenario, assertions explicites, selectors observables sur le site cible.
 5. Executer chaque scenario via les outils du MCP Playwright (navigation, interactions, snapshot) sur le site cible declare dans la story. Constater le resultat reel (pass/fail), ne rien simuler.
 6. Rediger `outputs/rapport-execution-YYYYMMDD.md` : resultat par scenario, diagnostic si echec, traçabilite vers l'ID de story et les cas de test.
-7. Committer chaque artefact au fur et a mesure (un commit par etape).
+7. Si un scenario est classe **FAIL** (defaut produit confirme, apres avoir ecarte l'environnement d'execution comme cause — voir regle BLOCKED) : invoquer la skill `bug-report-writer` pour rediger `outputs/anomalie-<TCID>-YYYYMMDD.md`, format standard [S_STRATEGIE] Summary / Prerequis / Etapes / Resultat attendu / Resultat obtenu / Autres informations, traçable au cas de test (TCID) et a l'ID de story. Un verdict BLOCKED ne genere jamais de bug report — l'environnement n'est pas le produit.
+8. Committer chaque artefact au fur et a mesure (un commit par etape).
 
 ## Regles
 - Zero donnee inventee : toute donnee (identifiants, textes d'erreur, URLs) doit etre documentee dans la story ou observable sur le site cible.
